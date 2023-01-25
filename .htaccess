@@ -1,0 +1,11 @@
+
+
+<IfModule mod_rewrite.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods: "POST, GET, PUT, DELETE"
+  Header set Access-Control-Allow-Headers "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRFToken, Authorization"
+  
+  RewriteEngine on
+  RewriteRule ^$ SERVEURANIMAUX/ [L]
+  RewriteRule (.*) SERVEURANIMAUX/$1 [L]
+</IfModule>

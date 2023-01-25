@@ -1,0 +1,40 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Indie Flower', cursive;
+}
+
+.site {
+    min-height: 100vh;
+    margin-bottom: -140px;
+}
+
+footer, .minSite {
+    height: 140px;
+}
+
+.imgFb, .imgTw {
+    height: 75px;
+}
+
+.imgYt {
+    height: 25px;
+}
+
+@media only screen and (max-width: 720px) {
+       
+    .site {
+        min-height: 100vh;
+        margin-bottom: -90px;
+    }
+    
+    footer, .minSite {
+        height: 90px;
+    }
+
+    .imgFb, .imgTw {
+        height: 40px;
+    }
+    
+    .imgYt {
+        height: 20px;
+    }
+}
