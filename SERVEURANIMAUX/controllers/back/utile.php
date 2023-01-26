@@ -1,6 +1,16 @@
 <?php
 
-function ajoutImage($file, $dir){
+
+/**
+ * Summary of ajoutImage
+ * @param string $file
+ * @param string $dir
+ * @throws Exception
+ * @return string
+ * nous sert à upload une image
+ */
+function ajoutImage($file, $dir)
+{
     if(!isset($file['name']) || empty($file['name']))
         throw new Exception("Vous devez indiquer une image");
 

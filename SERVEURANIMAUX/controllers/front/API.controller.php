@@ -126,6 +126,8 @@ class APIController
 
         $obj = json_decode(file_get_contents('php://input'));
 
+
+        //Si nous voulons un jour que les messages sois envoyés par mail directement à contact
         // $to = 'contact@contact.contact';
         // $subject = 'Message du site MyZoo de : '.$obj->nom;
         // $message = $obj->contenu;

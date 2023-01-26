@@ -2,17 +2,24 @@
 
 require_once 'models/Model.php';
 
+
+/**
+ * Summary of APIManager
+ * sert a faire la liaison entre le back-end et le front-end
+ */
 class APIManager extends Model
 {
     /**
      * Summary of getDBAnimaux
      * @return array
+     * récuère la liste des animaux 
      */
     public function getDBAnimaux($idFamille, $idContinent)
     {
 
         $whereClause = '';
 
+        
         if($idFamille !== -1 || $idContinent !== -1){
             $whereClause .= 'WHERE ';
         }
@@ -60,8 +67,9 @@ class APIManager extends Model
 
     /**
      * Summary of getDBAnimal
-     * @param mixed $idAnimal
+     * @param int $idAnimal
      * @return array
+     * retourn l'animal grace à sont ID
      */
     public function getDBAnimal($idAnimal)
     {
@@ -91,6 +99,11 @@ class APIManager extends Model
     }
 
 
+    /**
+     * Summary of getDBContinents
+     * @return array
+     * récupère les continents
+     */
     public function getDBContinents()
     {
         $req = 'SELECT * 
@@ -109,6 +122,11 @@ class APIManager extends Model
     }
 
 
+    /**
+     * Summary of getDBFamilles
+     * @return array
+     * récupère les familles
+     */
     public function getDBFamilles()
     {
         $req = 'SELECT * 

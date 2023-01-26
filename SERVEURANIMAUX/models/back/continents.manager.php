@@ -5,6 +5,11 @@ require_once 'models/Model.php';
 class ContinentsManager extends Model
 {
 
+    /**
+     * Summary of getContinents
+     * @return array
+     * récupère un tableau des continents
+     */
     public function getContinents()
     {
         $req = 'SELECT * FROM continent ';
@@ -19,6 +24,14 @@ class ContinentsManager extends Model
 
     }
 
+
+    /**
+     * Summary of addContinentAnimal
+     * @param int $idAnimal
+     * @param int $idContinent
+     * @return void
+     * ajoute un animal grace a sont ID dans la table animal_continent
+     */
     public function addContinentAnimal($idAnimal, $idContinent)
     {
         $req ="INSERT INTO animal_continent (animal_id, continent_id)
@@ -32,6 +45,13 @@ class ContinentsManager extends Model
           
     }
 
+    /**
+     * Summary of deleteDBContinentAnimal
+     * @param mixed $idAnimal
+     * @param mixed $idContinent
+     * @return void
+     * supprimer un animal grace a sont ID dans la table animal_continent
+     */
     public function deleteDBContinentAnimal($idAnimal,$idContinent){
         $req = "DELETE FROM animal_continent 
                 WHERE animal_id = :idAnimal 
@@ -45,6 +65,13 @@ class ContinentsManager extends Model
             $stmt->closeCursor();
     }
 
+    /**
+     * Summary of verificationExisteAnimalContinent
+     * @param int $idAnimal
+     * @param int $idContinent
+     * @return bool
+     * verification si un animal est dans la table animal_continent
+     */
     public function verificationExisteAnimalContinent($idAnimal,$idContinent){
         $req = "SELECT count(*) AS 'nb'
                 FROM animal_continent ac

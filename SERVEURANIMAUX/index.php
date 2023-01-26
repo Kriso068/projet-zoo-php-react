@@ -1,35 +1,39 @@
  <?php
 
  session_start();
-//http://localhost/...
-//https://www.h2prog.com/
+
  
 require_once 'controllers/front/API.controller.php';
 require_once 'controllers/back/admin.controller.php';
 require_once 'controllers/back/familles.controller.php';
 require_once 'controllers/back/animaux.controller.php';
 
- $apiController = new APIController();
- $adminController = new AdminController();
- $familleController = new FamillesController();
- $animauxController = new AnimauxController();
+$apiController = new APIController();
+$adminController = new AdminController();
+$familleController = new FamillesController();
+$animauxController = new AnimauxController();
 
-define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http").
-"://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
+//defini une constante URL qui remplace index par vide
+define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http")."://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
-// var_dump("$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]");
-// die($_SERVER['HTTP_HOST']);
-// die($_SERVER['PHP_SELF']);
-// var_dump(URL);
-// die($_GET['page']);
+//donc url sera : https://SERVERURANIMAUX/$url[0]
+// OU
+//donc url sera : https://SERVERURANIMAUX/$url[0]/$url[1]
+// OU
+//donc url sera : https://SERVERURANIMAUX/$url[0]/$url[1]/$url[2]
+
+
 try{
     if(empty($_GET['page'])){
         throw new Exception("La page n'existe pas");
     } else {
         $url = explode("/",filter_var($_GET['page'],FILTER_SANITIZE_URL));
         if(empty($url[0]) || empty($url[1])) throw new Exception ("La page n'existe pas");
+
+        //$url[0] est front
         switch($url[0]){
             case "front" : 
+                //$url[1] est animaux || animal || continents .....
                 switch($url[1]){
                     case "animaux": 
                         if(!isset($url[2]) || !isset($url[3])) {
@@ -54,7 +58,10 @@ try{
                     default : throw new Exception ("La page n'existe pas");
                 }
             break;
+
+            //$url[0] est back
             case "back":
+                //$url[1] est login || connexion || admin .....
                 switch ($url[1]) {
                     case 'login': 
                         $adminController->getPageLogin();
@@ -70,6 +77,7 @@ try{
                     break;
 
                     case "familles":
+                        //$url[2] est visualisation|| validationSuppression || validationModification .....
                         switch ($url[2]) {
                             case 'visualisation':
                                 $familleController->visualisation();
@@ -94,6 +102,7 @@ try{
                     
 
                     case "animaux":
+                        //$url[2] est visualisation|| validationSuppression || validationModification .....
                         switch ($url[2]) {
                             case 'visualisation':
                                 $animauxController->visualisation();

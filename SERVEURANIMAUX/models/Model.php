@@ -6,6 +6,11 @@ abstract class Model
     private static $pdo;
 
 
+    /**
+     * Summary of setBdd
+     * @return void
+     * connection à la BDD
+     */
     private static function setBdd()
     {
         self::$pdo = new PDO('mysql:host=localhost;dbname=zoo;charset=utf8', 'root', '');
@@ -13,6 +18,10 @@ abstract class Model
     }
 
 
+    /**
+     * Summary of getBdd
+     * @return PDO
+     */
     protected function getBdd()
     {
 
@@ -25,12 +34,12 @@ abstract class Model
         return self::$pdo;
     }
 
-      /**
-       * Summary of sendJSON
-       * @param mixed $infos
-       * @return void
-       */
-
+      
+    /**
+     * Summary of sendJSON
+     * @param mixed $infos
+     * @return void
+     */
     public static function sendJSON($infos)
     {
         //notre aplication pourra etre intérogée par n'importe qui grace à *
